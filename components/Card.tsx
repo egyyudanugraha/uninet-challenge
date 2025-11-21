@@ -35,7 +35,7 @@ export const Card = ({
     >
       <div
         className={cn(
-          "py-3 rounded-[14px] bg-background shadow-xl w-full lg:w-[222px]",
+          "pt-3 pb-5 rounded-[14px] bg-background shadow-xl w-full lg:w-[222px]",
           className
         )}
         {...props}
