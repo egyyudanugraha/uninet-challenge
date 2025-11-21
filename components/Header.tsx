@@ -17,16 +17,17 @@ export const Header = () => {
 
   return (
     <header className="flex items-center justify-between w-full">
-      <div className="relative">
+      <Link href="/" className="relative">
         <div className="size-8 border-foreground rounded-full border-2" />
         <Text
           size="extra-large"
           weight="bold"
           className="absolute top-[5px] left-2.5 bg-background leading-4.5 pb-1"
         >
-          excuseme
+          <span>e</span>
+          <span className="hidden md:inline">xcuseme</span>
         </Text>
-      </div>
+      </Link>
 
       <div className="flex gap-7 items-center">
         <AnimatePresence>

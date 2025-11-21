@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 import {
   Archive,
   BriefcaseBusiness,
@@ -26,16 +27,22 @@ export const Sidebar = () => {
   const [active, setActive] = useState("home");
 
   return (
-    <div className="absolute rounded-full flex flex-col gap-4 items-center bg-primary py-4 px-2 top-1/2 -translate-y-1/2 -left-7">
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3 }}
+      className="lg:absolute rounded-full flex lg:flex-col gap-4 items-center overflow-x-scroll bg-primary py-2 px-4 scrollbar-hidden lg:py-4 lg:px-2 lg:top-1/2 lg:-translate-y-1/2 -left-7"
+    >
       {SIDEBAR_ITEMS.map((item) => (
         <SidebarItem
           key={item.id}
           icon={item.icon}
+          label={item.id}
           isActive={active === item.id}
           onClick={() => setActive(item.id)}
         />
       ))}
-    </div>
+    </motion.div>
   );
 };
 
@@ -43,9 +50,11 @@ const SidebarItem = ({
   isActive = false,
   icon: Icon,
   className,
+  label,
   ...props
 }: ComponentProps<"div"> & {
   isActive?: boolean;
+  label: string;
   icon: ForwardRefExoticComponent<
     Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
   >;
@@ -53,7 +62,7 @@ const SidebarItem = ({
   return (
     <div
       className={cn(
-        "size-10 rounded-full flex justify-center items-center text-background cursor-pointer",
+        "p-2 rounded-full flex justify-center items-center text-background cursor-pointer gap-2",
         {
           "bg-[#88C6FF66] shadow-foreground/20 shadow-md": isActive,
         },
@@ -62,6 +71,13 @@ const SidebarItem = ({
       {...props}
     >
       <Icon className="size-6" />
+      <span
+        className={cn("lg:hidden capitalize text-sm font-medium", {
+          "font-semibold": isActive,
+        })}
+      >
+        {label}
+      </span>
     </div>
   );
 };
