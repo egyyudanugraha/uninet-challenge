@@ -16,7 +16,7 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <header className="flex items-center justify-between w-full">
+    <header className="flex items-center justify-between w-full gap-4">
       <Link href="/" className="relative">
         <div className="size-8 border-foreground rounded-full border-2" />
         <Text
@@ -29,11 +29,11 @@ export const Header = () => {
         </Text>
       </Link>
 
-      <div className="flex gap-7 items-center">
+      <div className="flex gap-4 md:gap-7 items-center overflow-hidden">
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="flex items-center gap-5"
+              className="flex items-center gap-5 overflow-x-scroll scrollbar-hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -49,7 +49,7 @@ export const Header = () => {
                   <Link href={item.href}>
                     <Text
                       size="small"
-                      className="hover:underline underline-offset-4"
+                      className="hover:underline underline-offset-4 text-nowrap"
                     >
                       {item.label}
                     </Text>
